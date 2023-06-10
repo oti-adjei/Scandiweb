@@ -83,7 +83,7 @@
             </div>
         </form>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
-        <script src="create.js"></script>
+        <script src="js/create.js"></script>
 
     </div>
 </body>
