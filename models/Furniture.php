@@ -92,7 +92,7 @@ class Furniture extends Product {
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-            # code...
+           
         }
      }
 

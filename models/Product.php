@@ -60,7 +60,13 @@ class Product
     public function readProducts()
     {
         // Create query
-        $query = 'SELECT * FROM ' . $this->tables . '';
+        //how i did it initiallly with no other extra params
+        //$query = 'SELECT * FROM ' . $this->tables . '';
+        $query ='SELECT p.sku, p.name, p.price, p.productType, f.length, f.width, f.height, d.size, b.weight
+              FROM ' . $this->tables . ' p
+              LEFT JOIN Furniture f ON p.sku = f.sku
+              LEFT JOIN DVD d ON p.sku = d.sku
+              LEFT JOIN Book b ON p.sku = b.sku';
 
         // Prepare the query statement
         $stmt = $this->conn->prepare($query);

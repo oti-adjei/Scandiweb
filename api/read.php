@@ -28,15 +28,40 @@ if ($nums > 0) {
         extract($row);
         //not that the variables are from the field names in database and not the Product class
 
+       //how i did it initally without adding the other tables
+
+        // $product_item = array(
+        //     'sku' => $sku,
+        //     'name' => $name,
+        //     'price' => $price,
+        //     'productType' => $productType,
+        // );
         $product_item = array(
             'sku' => $sku,
             'name' => $name,
             'price' => $price,
-            'productType' => $productType,
+            'productType' => $productType
         );
+        
+        // Array format for varying product variables based on product type
+        $typeMappings = array(
+            'Book' => array('weight' => $weight),
+            'DVD' => array('size' => $size),
+            'Furniture' => array(
+                'height' => $height,
+                'length' => $length,
+                'width' => $width,
+            )
+        );
+        
+        // Create typeMapping array based on product type
+        $typeMapping = isset($typeMappings[$productType]) ? $typeMappings[$productType] : array();
+        
+        // Merge product and typeMapping arrays
+        $product = array_merge($product_item, $typeMapping);
 
         // Push to "data"
-        array_push($productList_arr, $product_item);
+        array_push($productList_arr, $product);
         // array_push($posts_arr['data'], $post_item);
     }
 
