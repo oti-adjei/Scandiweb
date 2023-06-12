@@ -70,21 +70,23 @@ function createProduct(productType, formData) {
 
 //function to send the product details to the api
 function createFunction(productvar) {
-  fetch('https://scandigeorge.000webhostapp.com/api/create.php', {
+  fetch('https://scwproj.000webhostapp.com/api/create.php', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ jsonData }),
+  body: JSON.stringify(productvar),
 })
   .then(response => response.json())
   .then(data => {
     // Handle the response data
     console.log(data);
     // Redirect to index.php
+    document.getElementById("spinner").style.display = "none";
     window.location.assign('index.php');
   })
   .catch(error => {
+      document.getElementById("spinner").style.display = "none";
     console.error('Error:', error);
     alert('Error occurred: ' + error);
   });
@@ -99,13 +101,13 @@ Form.addEventListener("submit", (e) => {
   // Retrieve form values
   var name = document.getElementById("name").value;
   var sku = document.getElementById("sku").value;
-  var price = document.getElementById("price").value;
+  var price = parseFloat(document.getElementById("price").value);
   var productType = document.getElementById("productType").value;
-  var size = Parsefloat(document.getElementById("size").value);
-  var weight = Parsefloat(document.getElementById("weight").value);
-  var height = Parsefloat(document.getElementById("height").value);
-  var width = Parsefloat(document.getElementById("width").value);
-  var length = Parsefloat(document.getElementById("length").value);
+  var size = parseFloat(document.getElementById("size").value);
+  var weight = parseFloat(document.getElementById("weight").value);
+  var height = parseFloat(document.getElementById("height").value);
+  var width = parseFloat(document.getElementById("width").value);
+  var length = parseFloat(document.getElementById("length").value);
 
   // Create JavaScript object
   var formData = {
@@ -120,6 +122,7 @@ Form.addEventListener("submit", (e) => {
     length: length,
   };
   console.log(formData);
+  document.getElementById("spinner").style.display = "block";
 
   //call the create product function
   var product = createProduct(productType, formData);

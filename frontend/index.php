@@ -49,6 +49,26 @@
                     <h6><?php echo $product['sku']; ?></h6>
                     <h6><?php echo $product['price']; ?></h6>
                     <h6><?php echo $product['productType']; ?></h6>
+                    <?php switch ($product["productType"])  {
+                    case 'Furniture':?>
+                        <!-- frunitureInput section -->
+                        <h6><?php echo "Length:". $product['length']; ?></h6>
+                        <h6><?php echo "Width:" .$product['width']; ?></h6>
+                        <h6><?php echo "Height:". $product['height']; ?></h6>
+                    <?php break; 
+                    case 'Book':?>
+                        <!-- bookInput section -->
+                        <h6><?php echo "Weight:" .$product['weight']; ?></h6>
+                    <?php break; 
+                    case 'DVD':?>
+                        <!-- dvdInput section -->
+                        <h6><?php echo "Size:".$product['size']; ?></h6>
+                    <?php 
+                    break;
+                    default:
+                    # code...
+                    break;
+                    } ?>
                 </div>
             </div>
 
@@ -59,7 +79,7 @@
             }
             ?>
         </div>
-        <script src="js/checkbox-delete.js"></script>
+        <script src="js/delete.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 </body>
 

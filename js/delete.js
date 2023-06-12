@@ -36,6 +36,9 @@ function deleteFunction() {
     type: "POST",
     dataType: "json",
     url: "https://scwproj.000webhostapp.com/api/delete.php",
+    headers: {
+    'Content-Type': 'application/json',
+  },
     data: skus,
     success: function (data) {
       console.log(data);
