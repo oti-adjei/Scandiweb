@@ -20,8 +20,21 @@
         </header>
         <form action="process.php" method="post">
             <?php 
+            $config = require '../config/env.php';
             
-            if (isset($_GET['id'],$_GET['type'])) {
+            
+        if (isset($_GET['sku'])) {
+            
+
+            $json_data = file_get_contents("https://scwproj.000webhostapp.com/api/read_single.php?sku=".$_GET['sku']);
+            $product = json_decode($json_data, true);
+            if (!empty($product)) {
+                
+                
+        }
+
+            
+            
                 include("connect.php");
                 $id = $_GET['id'];
                 switch ($_GET['type']) {
@@ -55,23 +68,23 @@
                 ?>
             <div class="form-elemnt my-4">
                 <input type="text" class="form-control" name="name" placeholder="Book Title:"
-                    value="<?php echo $row["name"]; ?>">
+                    value="<?php echo $product["name"]; ?>">
             </div>
             <div class="form-elemnt my-4">
                 <input type="text" class="form-control" name="sku" placeholder="Author Name:"
-                    value="<?php echo $row["sku"]; ?>">
+                    value="<?php echo $product["sku"]; ?>">
             </div>
             <div class="form-element my-4">
                 <textarea name="productDescription" id="" class="form-control"
-                    placeholder="Book Description:"><?php echo $row["productDescription"]; ?></textarea>
+                    placeholder="Book Description:"><?php echo $product["productDescription"]; ?></textarea>
             </div>
             <div class="form-elemnt my-4">
                 <select name="productType" id="" class="form-control">
                     <option value="">Select Book Type:</option>
-                    <option value="Furniture" <?php if($row["productType"]=="Furniture"){echo "selected";} ?>>Furniture
+                    <option value="Furniture" <?php if($product["productType"]=="Furniture"){echo "selected";} ?>>Furniture
                     </option>
-                    <option value="Book" <?php if($row["productType"]=="Book"){echo "selected";} ?>>Book</option>
-                    <option value="DVD" <?php if($row["productType"]=="DVD"){echo "selected";} ?>>DVD</option>
+                    <option value="Book" <?php if($product["productType"]=="Book"){echo "selected";} ?>>Book</option>
+                    <option value="DVD" <?php if($product["productType"]=="DVD"){echo "selected";} ?>>DVD</option>
                 </select>
             </div>
             <?php
@@ -80,19 +93,19 @@
             case 'Furniture':?>
             <!-- frunitureInput section -->
             <div class="form-elemnt my-4" id="furnitureInput"
-                <?php if($row["productType"]=="Furniture"){echo "selected";} ?>>
+                <?php if($product["productType"]=="Furniture"){echo "selected";} ?>>
                 <!-- Length -->
                 <label for="length">Length</label>
                 <input type="text" class="form-control" name="length" placeholder="Length:"
-                    value="<?php echo $row["length"]; ?>">
+                    value="<?php echo $product["length"]; ?>">
                 <!-- Width -->
                 <label for="width" class="mt-2">Width</label>
                 <input type="text" class="form-control" name="width" placeholder="Width:"
-                    value="<?php echo $row["width"]; ?>">
+                    value="<?php echo $product["width"]; ?>">
                 <!-- Height -->
                 <label for="height" class="mt-2">Height</label>
                 <input type="text" class="form-control" name="height" placeholder="Height:"
-                    value="<?php echo $row["height"]; ?>">
+                    value="<?php echo $product["height"]; ?>">
             </div>
             <?php break; 
             case 'Book':?>
@@ -101,7 +114,7 @@
                 <!-- Weight -->
                 <label for="validationDefault04">Weight</label>
                 <input type="text" class="form-control" name="weight" placeholder="in Kilogerams(kg):"
-                    value="<?php if($row["productType"]=="Book"){echo "selected";} ?>">
+                    value="<?php if($product["productType"]=="Book"){echo "selected";} ?>">
             </div>
             <?php break; 
             case 'DVD':?>
@@ -110,7 +123,7 @@
                 <!-- Size -->
                 <label for="validationDefault04">Size</label>
                 <input type="text" class="form-control" name="size" placeholder="in Megabytes(MB):"
-                    value="<?php if($row["productType"]=="DVD"){echo "selected";} ?>">
+                    value="<?php if($product["productType"]=="DVD"){echo "selected";} ?>">
             </div>
             <?php 
             break;
@@ -126,6 +139,7 @@
             }else{
                 echo "<h3>Book Does Not Exist</h3>";
             }
+            
             ?>
         </form>
     </div>

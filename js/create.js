@@ -1,12 +1,12 @@
 //Storing the Ids of some html inputs in variables.
+let Form = document.getElementById("myForm");
 var productType = document.getElementById("productType");
 var Furnitures = document.getElementById("furnitureInput");
 var Books = document.getElementById("bookInput");
 var CDs = document.getElementById("dvdInput");
 
-//create variable to store checkbox sku
-var checkedList = [];
 
+//event listen to know when the type of product is changed and display the corresponding input fields
 productType.addEventListener("change", function () {
   switch (productType.value) {
     case "Furniture":
@@ -35,7 +35,10 @@ productType.addEventListener("change", function () {
       break;
   }
 });
+
+//create product array to store the product details based on the product type
 function createProduct(productType, formData) {
+  //array for constant product variables
   const product = {
     sku: formData.sku,
     name: formData.name,
@@ -43,6 +46,7 @@ function createProduct(productType, formData) {
     type: productType,
   };
 
+  //array format for varying product variables based on product type
   const typeMappings = {
     Book: { weight: formData.weight },
     DVD: { size: formData.size },
@@ -53,7 +57,10 @@ function createProduct(productType, formData) {
     },
   };
 
+  //calling and creating typeMapping array based on product type
   const typeMapping = typeMappings[productType];
+
+  //merge product and product type arrays
   if (typeMapping) {
     Object.assign(product, typeMapping);
   }
@@ -61,8 +68,31 @@ function createProduct(productType, formData) {
   return product;
 }
 
-let Form = document.getElementById("myForm");
+//function to send the product details to the api
+function createFunction(productvar) {
+  fetch('https://scandigeorge.000webhostapp.com/api/create.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ jsonData }),
+})
+  .then(response => response.json())
+  .then(data => {
+    // Handle the response data
+    console.log(data);
+    // Redirect to index.php
+    window.location.assign('index.php');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Error occurred: ' + error);
+  });
 
+}
+
+
+//using the form submit event to get the form data and call the create function
 Form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -89,103 +119,12 @@ Form.addEventListener("submit", (e) => {
     width: width,
     length: length,
   };
-
-  // Perform further actions with the formData object
   console.log(formData);
+
+  //call the create product function
   var product = createProduct(productType, formData);
   console.log(product);
+
+  //call the create function
   createFunction(product);
 });
-function createFunction(productvar) {
-  var jsonData = JSON.stringify(productvar);
-  $.ajax({
-    type: "POST",
-    url: "https://scandigeorge.000webhostapp.com/api/create.php",
-    data: {jsonData},
-    dataType: "json",
-    success: function (data) {
-      // console.log(data);
-      // alert(data);
-      window.location.assign("index.php")
-    },
-    error: function (xhr, status, error) {
-      console.log(error);
-      alert("Error occurred: " + error);
-    },
-  });
-}
-
-let uy = "hi";
-
-// let Form = document.getElementById("myForm");
-
-// Form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   // Retrieve form values
-//   var name = document.getElementById("name")
-//   var sku = document.getElementById("sku")
-//   var price = document.getElementById("price")
-//   var productType = document.getElementById("productType")
-//   var size = document.getElementById("size")
-//   var weight = document.getElementById("weight")
-//   var height = document.getElementById("height")
-//   var width = document.getElementById("width")
-//   var length = document.getElementById("length")
-
-//   // Create JavaScript array
-//   var formData = {
-//     name: name,
-//     sku: sku,
-//     price: price,
-//     type: productType,
-//     size: size,
-//     weight: weight,
-//     height: height,
-//     width: width,
-//     length: length
-//   };
-
-//   // Perform further actions with the formData array
-//   console.log(formData);
-// });
-
-let you = "hi";
-// function createFunction() {
-
-//   // $.ajax({
-//   //     type: "POST",
-//   //     url: "delete.php",
-//   //     data: {formData},
-//   //     success: function(data){
-//   //       console.log(data);
-//   //       alert(data);
-
-//   //     }
-//   // });
-//   // Retrieve form values
-//   var name = document.getElementsById("name")
-//   var sku = document.getElementsById("sku")
-//   var price = document.getElementsById("price")
-//   var productType = document.getElementsById("productType")
-//   var size = document.getElementsById("size")
-//   var weight = document.getElementsById("weight")
-//   var height = document.getElementsById("height")
-//   var width = document.getElementsById("width")
-//   var length = document.getElementsById("length")
-
-//   // Create JavaScript array
-//   var formData = {
-//     name: name,
-//     sku: sku,
-//     price: price,
-//     type: productType,
-//     size: size,
-//     weight: weight,
-//     height: height,
-//     width: width,
-//     length: length
-//   };
-
-//   // Perform further actions with the formData array
-//   console.log(formData);}

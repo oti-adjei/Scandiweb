@@ -26,15 +26,15 @@
         <!-- Display sesssion boxes -->
         <div class="Display-area">
             <?php
-        $apiUrl = "https://scandigeorge.000webhostapp.com/api/read.php";
-        $json_data = file_get_contents($apiUrl);
-        $products = json_decode($json_data, true);
-        
-        if (!empty($products)) {
-            foreach ($products as $product) {
-        //  begin of php for bracket
-        {
-        ?>
+            $config = require '../config/env.php';
+            $json_data = file_get_contents($config['READ_ALL_API']);
+            $products = json_decode($json_data, true);
+            
+            if (!empty($products)) {
+                foreach ($products as $product) {
+            //  begin of php for bracket
+            {
+            ?>
 
 
             <div class="display-box">
@@ -54,10 +54,10 @@
 
             <!-- End of php for bracket -->
             <?php
-        }}} else {
+            }}} else {
             echo "No products found";
-        }
-        ?>
+            }
+            ?>
         </div>
         <script src="js/checkbox-delete.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>

@@ -1,14 +1,19 @@
+// Description: This file contains the code for the delete function
+// get all the checkboxes and create an empty array
 var checkboxes = document.querySelectorAll(".delete-checkbox");
 var checkedList = [];
 
+//loop through the checkboxes 
 for (var checkbox of checkboxes) {
+  //add event listener to each checkbox to know when it is checked or unchecked
   checkbox.addEventListener("click", function () {
+    //add the checked ones to the array
     if (this.checked == true) {
       console.log(this.value);
       checkedList.push(this.value);
       console.log(checkedList);
     }
-    //explain this part later to myself
+    //remove the unchecked ones from the array
     else {
       var index = checkedList.indexOf(this.value);
       if (index > -1) {
@@ -19,26 +24,19 @@ for (var checkbox of checkboxes) {
   });
 }
 
+var data = {
+  skus: checkedList
+};
+
+//function to delete the checked products by sending the array to the api
 function deleteFunction() {
-  //  var nData = JSON.stringify(checkedList);
-  // console.log(nData);
-  //  $.ajax({
-  //     type: "POST",
-  //     url: "http://localhost/php-crud-main/delete.php",
-  //     data: nData,
-  //     success: function (data) {
-  //       console.log(data);
-  //       alert(data);
-  //     },
-  //     error: function (xhr, status, error) {
-  //       console.log(error);
-  //       alert("Error occurred: " + error);
-  //     },
-  //   });
+  //convert the array to json format
+  var skus = JSON.stringify(data);
   $.ajax({
     type: "POST",
-    url: "https://scandigeorge.000webhostapp.com/api/delete.php",
-    data: {checkedList},
+    dataType: "json",
+    url: "https://scwproj.000webhostapp.com/api/delete.php",
+    data: skus,
     success: function (data) {
       console.log(data);
       alert(data);
@@ -48,7 +46,4 @@ function deleteFunction() {
       alert(error);
     },
   });
-
-  //   var variableToSend = checkedList;
-  //   $.post("delete.php", { variable: variableToSend });
 }
