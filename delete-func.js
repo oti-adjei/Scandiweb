@@ -31,20 +31,25 @@ let data = {
 
 //function to delete the checked products by sending the array to the api
 // delete product
-    $('#delete-product-btn').on('click', () => {
-        
-
-        $.ajax({
-            method: 'POST',
-            url: '/api/delete.php',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (res) {
-                window.location.href = "/"
-            },
-            error: function (error) {
-                 console.log(error);
-             }
-        });
-    });
+$('#delete-product-btn').on('click', () => {
+  $.ajax({
+      method: 'POST',
+      url: 'api/delete.php',
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      dataType: 'json',
+      success: function (res) {
+          if (res.message === "Product deleted successfully") {
+              alert("Product deleted successfully");
+              
+          } else {
+              alert("Failed to delete product");
+          }
+      },
+      error: function (error) {
+          console.log("Error:", error);
+          alert("An error occurred while deleting the product.");
+      }
+  });
+});
+    
