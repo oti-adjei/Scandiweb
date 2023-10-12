@@ -1,10 +1,10 @@
 // Description: This file contains the code for the delete function
 // get all the checkboxes and create an empty array
-var checkboxes = document.querySelectorAll(".delete-checkbox");
-var checkedList = [];
+let checkboxes = document.querySelectorAll(".delete-checkbox");
+let checkedList = [];
 
 //loop through the checkboxes 
-for (var checkbox of checkboxes) {
+for (let checkbox of checkboxes) {
   //add event listener to each checkbox to know when it is checked or unchecked
   checkbox.addEventListener("click", function () {
     //add the checked ones to the array
