@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <title>Scandiweb Test</title>
 </head>
 
@@ -17,7 +18,7 @@
             <h1>Product List</h1>
             <div>
                 <a href="create.php" class="btn btn-primary">ADD</a>
-                <a href="" onclick="deleteFunction()" class="btn btn-danger">MASS DELETE</a>
+                <a href="" id="delete-product-btn" class="btn btn-danger">MASS DELETE</a>
             </div>
         </header>
 
@@ -79,8 +80,7 @@
             }
             ?>
         </div>
-        <script src="js/delete.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-</body>
+        <script src="js/delete-func.js"></script>
+        </body>
 
 </html>
