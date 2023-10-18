@@ -44,10 +44,4 @@ class ProductController
         ],
     ];
 
-    private static $deleteProductSchema = [
-        "skus" => [
-            "required" => [],
-            "arrayOf" => ["is_string"],
-        ]
-    ];
 }
