@@ -11,7 +11,7 @@
     </coverage>
     <testsuites>
         <testsuite name="main">
-            <directory>./test/model</directory>
+            <directory>./test</directory>
         </testsuite>
     </testsuites>
     <logging/>
