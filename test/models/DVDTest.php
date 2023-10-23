@@ -2,6 +2,7 @@
 
 namespace App\test\model;
 
+use App\test\model\ProductTest;
 use App\DVD;
 class DVDTest extends ProductTest {
     

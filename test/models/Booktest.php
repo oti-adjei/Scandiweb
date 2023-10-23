@@ -2,7 +2,7 @@
 
 namespace App\test\model;
 
-
+use App\test\model\ProductTest;
 use App\Book;
 
 class BookTest extends ProductTest

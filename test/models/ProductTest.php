@@ -25,12 +25,12 @@ class ProductTest extends TestCase
     
     public function testGettersAndSetters()
     {
-        $this->product->setSku('SKU123');
+        $this->product->setSku('SKU1234');
         $this->product->setName('Product Name');
         $this->product->setPrice(10.99);
         $this->product->setType('Product Type');
 
-        $this->assertEquals('SKU123', $this->product->getSku());
+        $this->assertEquals('SKU1234', $this->product->getSku());
         $this->assertEquals('Product Name', $this->product->getName());
         $this->assertEquals(10.99, $this->product->getPrice());
         $this->assertEquals('Product Type', $this->product->getType());
@@ -39,7 +39,7 @@ class ProductTest extends TestCase
     public function testCreateProduct()
     {
         // Create a product
-        $this->product->setSku('SKU123');
+        $this->product->setSku('SKU1234');
         $this->product->setName('Product Name');
         $this->product->setPrice(10.99);
         $this->product->setType('Product Type');
@@ -67,13 +67,13 @@ class ProductTest extends TestCase
         // Perform the test database setup here
         // Insert a specific product into the database for testing
         // Set the SKU of the product to be read
-        $this->product->setSku('SKU123');
+        $this->product->setSku('SKU1234');
 
         // Call the readSingleProduct method
         $this->product->readSingleProduct();
 
         // Assert that the product properties have been set correctly
-        $this->assertEquals('SKU123', $this->product->getSku());
+        $this->assertEquals('SKU1234', $this->product->getSku());
         $this->assertEquals('Product Name', $this->product->getName());
         $this->assertEquals(10.99, $this->product->getPrice());
         $this->assertEquals('Product Type', $this->product->getType());
@@ -84,7 +84,7 @@ class ProductTest extends TestCase
         // Perform the test database setup here
         // Insert a product into the database for testing
         // Set the SKU of the product to be updated
-        $this->product->setSku('SKU123');
+        $this->product->setSku('SKU1234');
 
         // Update the product properties
         $this->product->setName('Updated Product Name');
@@ -117,7 +117,7 @@ class ProductTest extends TestCase
         // Perform the test database setup here
         // Insert multiple products into the database for testing
         // Set an array of SKUs to be deleted
-        $skus = ['SKU123', 'SKU124', 'SKU125'];
+        $skus = ['SKU1234', 'SKU1244', 'SKU1254'];
 
         // Call the delete method
         $result = $this->product->delete($skus);

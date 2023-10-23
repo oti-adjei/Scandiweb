@@ -2,6 +2,7 @@
 
 namespace App\test\model;
 
+use App\test\model\ProductTest;
 use App\Furniture;
 // Include the class you want to test
 
