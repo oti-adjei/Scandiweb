@@ -1,8 +1,9 @@
 <?php
+namespace App;
 
 require_once 'Product.php';
 
-class Dvd extends Product
+class DVD extends Product
 {
     // DB stuff
     protected $table = 'DVD';

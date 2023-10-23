@@ -1,7 +1,9 @@
+<?php
 
-require 'DVD.php'; // Include the class you want to test
+namespace App\test\model;
 
-class DVDTest extendsProductTest {
+use App\DVD;
+class DVDTest extends ProductTest {
     
     public function testCreateDVD() {
         $db = parent::testDbConnection;

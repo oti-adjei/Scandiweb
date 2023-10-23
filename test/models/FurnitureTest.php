@@ -1,5 +1,9 @@
-require 'Product.php';
-require 'Furniture.php'; // Include the class you want to test
+<?php
+
+namespace App\test\model;
+
+use App\Furniture;
+// Include the class you want to test
 
 class FurnitureTest extends ProductTest {
     protected $db;

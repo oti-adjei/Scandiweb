@@ -1,4 +1,9 @@
-require_once 'Book.php';
+<?php
+
+namespace App\test\model;
+
+
+use App\Book;
 
 class BookTest extends ProductTest
 {

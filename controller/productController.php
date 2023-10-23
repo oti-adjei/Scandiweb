@@ -1,4 +1,5 @@
 <?php
+namespace App\controller;
 class ProductController
 {
     private static $createSchema = [

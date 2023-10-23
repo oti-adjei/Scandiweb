@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 require_once 'Product.php';
 
 class Furniture extends Product {
