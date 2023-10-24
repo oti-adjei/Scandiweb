@@ -12,14 +12,15 @@ class ProductTest extends TestCase
     protected $product;
 
     //this function is called before each test and sets up the database connection and the product object
-    protected function setUp() {
+    protected function setUp() :void {
         $host = 'zhr.h.filess.io';
         $db_name = 'Georgie_tryicetrap'; 
         $username = 'Georgie_tryicetrap'; 
         $password = '068d2a6156abd6046f6826e6446f3b6b1f9c8fd1'; 
 
         // Create a test database connection
-        $this->testDbConnection = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+        //use backslash to refer to the global namespace
+        $this->testDbConnection = new \PDO("mysql:host=$host;dbname=$db_name", $username, $password);
         $this->product = new Product($this->testDbConnection);
     }
     

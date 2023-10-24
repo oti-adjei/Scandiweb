@@ -10,7 +10,7 @@ class DVD extends Product
 
     //furniture parameters
     public $size;
-    public function __construct($db, $sku, $name, $price, $size)
+    public function __construct($db, $sku, $name, $price,$type, $size)
     {
         parent::__construct($db);
         parent::setSku($sku);

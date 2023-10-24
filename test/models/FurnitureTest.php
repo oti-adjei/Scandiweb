@@ -2,20 +2,24 @@
 
 namespace App\test\model;
 
-use App\test\model\ProductTest;
+
 use App\Furniture;
-// Include the class you want to test
+use PHPUnit\Framework\TestCase;
 
-class FurnitureTest extends ProductTest {
-    protected $db;
-    protected $furniture;
+class FurnitureTest extends TestCase {
 
-    // This function is called before each test and sets up the database connection and the product object
-    protected function setUp() {
-        parent::setUp();
+    protected $testDbConnection;
+
+    //this function is called before each test and sets up the database connection and the product object
+    protected function setUp() :void{
+        $host = 'zhr.h.filess.io';
+        $db_name = 'Georgie_tryicetrap'; 
+        $username = 'Georgie_tryicetrap'; 
+        $password = '068d2a6156abd6046f6826e6446f3b6b1f9c8fd1'; 
+
         // Create a test database connection
-        $this->db = parent::testDbConnection;
-        $this->furniture = new Furniture($this->db, 'sample_sku', 'Furniture Name', 49.99, 'Furniture Type', 30, 40, 50);
+        $this->testDbConnection = new \PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+        $this->furniture = new Furniture($this->testDbConnection, 'sample_sku', 'Furniture Name', 49.99, 'Furniture', 30, 40, 50);
     }
 
     public function testCreateFurniture() {
@@ -24,9 +28,9 @@ class FurnitureTest extends ProductTest {
 
     public function testUpdateFurniture() {
     // Assuming 'existing_sku' exists in your database
-    $existingFurniture = new Furniture($this->db, 'existing_sku', 'Existing Furniture Name', 29.99, 'Existing Furniture Type', 20, 30, 40);
+    $existingFurniture = new Furniture($this->testDbConnection, 'sample_sku', 'Existing Furniture Name', 29.99, 'Furniture', 20, 30, 40);
 
-    // Call the update method on the existing furniture
+    // Call the update method 
     $this->assertTrue($existingFurniture->update());
 }
 
