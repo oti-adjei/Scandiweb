@@ -18,7 +18,7 @@ class FurnitureTest extends TestCase {
         $password = '068d2a6156abd6046f6826e6446f3b6b1f9c8fd1'; 
 
         // Create a test database connection
-        $this->testDbConnection = new \PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+        $this->testDbConnection = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
         $this->furniture = new Furniture($this->testDbConnection, 'sample_sku', 'Furniture Name', 49.99, 'Furniture', 30, 40, 50);
     }
 

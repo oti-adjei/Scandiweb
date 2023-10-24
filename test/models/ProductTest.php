@@ -20,7 +20,7 @@ class ProductTest extends TestCase
 
         // Create a test database connection
         //use backslash to refer to the global namespace
-        $this->testDbConnection = new \PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+        $this->testDbConnection = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
         $this->product = new Product($this->testDbConnection);
     }
     
